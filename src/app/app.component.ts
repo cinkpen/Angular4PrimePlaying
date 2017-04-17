@@ -10,10 +10,20 @@ import { PrimeGeneratorService } from './prime-generator.service'
 export class AppComponent implements OnDestroy {
   title = 'app works!';
   primes: number[] = [];
+  positions: Position[] = [];
+
+
 
   constructor(private prime: PrimeGeneratorService) {
     setTimeout(() =>
-      prime.primeFound.subscribe(prime => this.primes.unshift(prime)), 10000);
+      prime.primeFound.subscribe(prime => {
+        this.positions.push(new Position(prime%1024, prime/1024));
+
+        this.primes.unshift(prime);
+        while  (this.primes.length > 3){
+          this.primes.pop();
+        }
+      }), 1000);
 
   }
 
@@ -23,5 +33,11 @@ export class AppComponent implements OnDestroy {
 
   onStop(){
     this.prime.stop();
+  }
+}
+
+export class Position{
+  constructor(public x, public y){
+
   }
 }

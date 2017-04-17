@@ -1,6 +1,9 @@
-
 <button (click)="onStop()"> Stop</button>
 <ul>
-    <li *ngFor="let prime of primes">{{prime}}</li>
+  <li *ngFor="let prime of primes">{{prime}}</li>
 </ul>
-
+<svg width="1024" height="1000">
+  <g *ngFor="let position of positions">
+    <circle [attr.cx]="position.x" [attr.cy]="position.y" r="1" stroke-width="0" fill="red" />
+  </g>
+</svg>

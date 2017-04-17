@@ -5,7 +5,7 @@ import { Observable, Subject,ReplaySubject } from 'rxjs'
 @Injectable()
 export class PrimeGeneratorService {
   count = 1;
-  maxCount = 10000;
+  maxCount = 100000;
   primeFound = new ReplaySubject<number>();
   stopNow = false;
 
@@ -19,7 +19,7 @@ export class PrimeGeneratorService {
     if (this.stopNow)
       return ;  
 
-      
+
     if (this.count < this.maxCount) {
 
       if (this.isPrime(this.count)) {
@@ -27,7 +27,7 @@ export class PrimeGeneratorService {
         this.primeFound.next(this.count);
       }
      
-      setTimeout(() => { this.start(); }, 1);
+      setTimeout(() => { this.start(); }, 0);
     }
   }
 
